@@ -5,5 +5,18 @@
   <%= @survey.content %>
 </p>
 
+<ol>
+<% for question in @survey.questions %>
+  <li>
+    <%= question.content %>
+    <ul>
+    <% for answer in question.answers %>
+      <li><%= answer.content %></li>
+    <% end %>
+    </ul>
+  </li>
+<% end %>
+</ol>
+
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
 <%= link_to 'Back', surveys_path %>
