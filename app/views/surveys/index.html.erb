@@ -2,7 +2,7 @@
 
 <h1>Surveys</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Content</th>
@@ -14,9 +14,9 @@
     <% @surveys.each do |survey| %>
       <tr>
         <td><%= survey.content %></td>
-        <td><%= link_to 'Show', survey %></td>
-        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', survey, class: 'btn btn-primary btn-xs' %></td>
+        <td><%= link_to 'Edit', edit_survey_path(survey), class: 'btn btn-primary btn-xs' %></td>
+        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Survey', new_survey_path %>
+<%= link_to 'New Survey', new_survey_path, class: 'btn btn-default' %>

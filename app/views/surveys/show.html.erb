@@ -18,5 +18,8 @@
 <% end %>
 </ol>
 
-<%= link_to 'Edit', edit_survey_path(@survey) %> |
-<%= link_to 'Back', surveys_path %>
+<div class="row pull-rigth">
+  <%= link_to 'Edit', edit_survey_path(@survey), class: 'btn btn-primary' %> 
+  <%= link_to 'Back', surveys_path, class: 'btn btn-default' %>
+</div>
+

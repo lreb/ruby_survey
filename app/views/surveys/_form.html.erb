@@ -13,21 +13,64 @@
 
   <div class="field">
     <%= f.label :content %>
-    <%= f.text_field :content %>
+    <%= f.text_field :content, :class=>"form-control" %>
+  </div>
+ 
+  <div class="panel panel-default">
+    <div class="panel-body">
+      
+      <%= f.fields_for :questions do |question_form| %>
+        <h3>Question</h3>
+          <div class="input-group">
+            <!--input type="text" class="form-control"-->
+            <%= question_form.text_field :content, :class=>"form-control" %>
+            <span class="input-group-btn">
+                  <!--button class="btn btn-default" type="button">Go!</button-->
+                  <%= question_form.link_to_remove "Remove this question", :class=>"btn btn-danger"  %>
+            </span>
+          </div>
+
+        
+        
+
+
+        <!--div class="panel panel-default">
+          <div class="panel-body"-->
+            
+              <h4>Answers</h4>
+            <%= question_form.fields_for :answers do |answer_form| %>
+            
+
+              <div class="input-group">
+                <%= answer_form.text_field :content, :class=>"form-control" %>
+                <span class="input-group-btn">
+                      <!--button class="btn btn-default" type="button">Go!</button-->
+                      <%= answer_form.link_to_remove "Remove this answer", :class=>"btn btn-danger" %>
+                </span>
+              </div>
+              </br>
+              
+              
+            <% end %>
+            </br>
+          <!--/div>
+        </div-->
+
+          
+          <p><%= question_form.link_to_add "Add a answer", :answers, :class=>"btn btn-primary" %></p>
+
+          <hr>
+      <% end %>
+
+      <p><%= f.link_to_add "Add a question", :questions, :class=>"btn btn-primary" %></p>
+      <hr>
+      
+    </div>
   </div>
 
-  <%= f.fields_for :questions do |question_form| %>
-    <%= question_form.text_field :content %>
-    <%= question_form.link_to_remove "Remove this question" %>
+  
 
-      <%= question_form.fields_for :answers do |answer_form| %>
-        <%= answer_form.text_field :content %>
-        <%= answer_form.link_to_remove "Remove this answer" %>
-      <% end %>
-      <p><%= question_form.link_to_add "Add a answer", :answers %></p>
-
-  <% end %>
-  <p><%= f.link_to_add "Add a question", :questions %></p>
+  
 
   <div class="actions">
     <%= f.submit %>
