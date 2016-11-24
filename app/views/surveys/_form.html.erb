@@ -1,0 +1,35 @@
+<%= nested_form_for (survey) do |f| %>
+  <% if survey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+      <ul>
+      <% survey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+  </div>
+
+  <%= f.fields_for :questions do |question_form| %>
+    <%= question_form.text_field :content %>
+    <%= question_form.link_to_remove "Remove this question" %>
+
+      <%= question_form.fields_for :answers do |answer_form| %>
+        <%= answer_form.text_field :content %>
+        <%= answer_form.link_to_remove "Remove this answer" %>
+      <% end %>
+      <p><%= question_form.link_to_add "Add a answer", :answers %></p>
+
+  <% end %>
+  <p><%= f.link_to_add "Add a question", :questions %></p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
